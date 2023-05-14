@@ -1,0 +1,153 @@
+/* Font poppins */
+@font-face {
+  font-family: "poppins";
+  src: url("/assets/fonts/poppins/poppins-bold-webfont.woff") format("woff2"),
+    url("/assets/fonts/poppins/poppins-bold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "poppins";
+  src: url("/assets/fonts/poppins/poppins-bolditalic-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/poppins/poppins-bolditalic-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "poppins";
+  src: url("/assets/fonts/poppins/poppins-extrabold-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/poppins/poppins-extrabold-webfont.woff") format("woff");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "poppins";
+  src: url("/assets/fonts/poppins/poppins-extrabolditalic-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/poppins/poppins-extrabolditalic-webfont.woff")
+      format("woff");
+  font-weight: bolder;
+  font-style: italic;
+}
+@font-face {
+  font-family: "poppins";
+  src: url("/assets/fonts/poppins/poppins-italic-webfont.woff2") format("woff2"),
+    url("/assets/fonts/poppins/poppins-italic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "poppins";
+  src: url("/assets/fonts/poppins/poppins-regular-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/poppins/poppins-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* .
+.
+.
+.
+.
+.
+.
+. Custom properties & global selectors*/
+:root {
+  --color-background-01: #f0f0f0;
+  --color-background-02: white;
+  --color-primary: #151515;
+  --color-primary-light: #716f6f;
+  --color_primary-lighter: #dbdbdb;
+  --color-secundary: #864cff;
+  --color-warning: #ff5757;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* .
+.
+.
+.
+.
+.
+.
+. HTML elements */
+body {
+  background-color: var(--color-background-01);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "poppins", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  margin: 0;
+}
+
+/* Removes arrows in numeric inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+/* .
+.
+.
+.
+.
+.
+.
+. Age calculator body */
+.age-calc {
+  background-color: var(--color-background-02);
+  width: 300px;
+  border-radius: 30px 30px 90px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+}
+/* .
+.
+.
+.
+.
+.
+.
+. Age calculator inputs */
+.age-calc__input-box {
+  display: flex;
+}
+
+.age-calc__input-section {
+  width: calc(100% / 3);
+  padding: 5px;
+}
+
+.age-calc__h1 {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--color-primary-light);
+}
+
+.age-calc__input {
+  width: 100%;
+  border: 1px solid var(--color_primary-lighter);
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.age-calc__input:focus-visible {
+  border-color: var(--color-secundary);
+}
