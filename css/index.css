@@ -100,6 +100,15 @@ input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+/* Removes background color when interacting on mobile devices */
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
 /* .
 .
 .
@@ -147,6 +156,9 @@ input[type="number"] {
   letter-spacing: 2px;
   color: var(--color-primary-light);
 }
+.age-calc__h1.warning {
+  color: var(--color-warning);
+}
 
 .age-calc__input {
   width: 100%;
@@ -161,10 +173,14 @@ input[type="number"] {
 .age-calc__input:focus {
   border-color: var(--color-secundary);
 }
+.age-calc__input.warning {
+  border-color: var(--color-warning);
+}
 
 @media only screen and (min-width: 1024px) {
   .age-calc__input {
     font-size: 24px;
+    transition: 0.2s;
   }
 
   .age-calc__h1 {
@@ -198,12 +214,15 @@ input[type="number"] {
   height: 55px;
   border: none;
   border-radius: 50%;
+  outline: none;
   padding: 15px;
   background-color: var(--color-secundary);
   cursor: pointer;
 }
-.age-calc__btn:active,
-.age-calc__btn:hover {
+.age-calc__btn:active {
+  background-color: var(--color-primary);
+}
+.age-calc__btn:focus-visible {
   background-color: var(--color-primary);
 }
 
@@ -222,6 +241,10 @@ input[type="number"] {
     width: 70px;
     height: 70px;
     padding: 20px;
+    transition: 0.2s;
+  }
+  .age-calc__btn:hover {
+    background-color: var(--color-primary);
   }
 }
 /* .
@@ -232,7 +255,6 @@ input[type="number"] {
 .
 .
 . Age calculator results */
-
 .age-calc__result {
   margin: 0;
   font-size: 42px;
