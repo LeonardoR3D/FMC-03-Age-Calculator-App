@@ -19,7 +19,7 @@
   src: url("/assets/fonts/poppins/poppins-extrabold-webfont.woff2")
       format("woff2"),
     url("/assets/fonts/poppins/poppins-extrabold-webfont.woff") format("woff");
-  font-weight: bolder;
+  font-weight: 800;
   font-style: normal;
 }
 @font-face {
@@ -28,7 +28,7 @@
       format("woff2"),
     url("/assets/fonts/poppins/poppins-extrabolditalic-webfont.woff")
       format("woff");
-  font-weight: bolder;
+  font-weight: 800;
   font-style: italic;
 }
 @font-face {
@@ -78,11 +78,11 @@
 .
 . HTML elements */
 body {
-  background-color: var(--color-background-01);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  background-color: var(--color-background-01);
   font-family: "poppins", Arial, Helvetica, sans-serif;
 }
 
@@ -109,12 +109,19 @@ input[type="number"] {
 .
 . Age calculator body */
 .age-calc {
-  background-color: var(--color-background-02);
   width: 300px;
   border-radius: 30px 30px 90px;
-  padding: 40px 20px;
   display: flex;
   flex-direction: column;
+  padding: 40px 20px;
+  background-color: var(--color-background-02);
+}
+
+@media only screen and (min-width: 1024px) {
+  .age-calc {
+    width: 600px;
+    padding: 40px;
+  }
 }
 /* .
 .
@@ -125,17 +132,19 @@ input[type="number"] {
 .
 . Age calculator inputs */
 .age-calc__input-box {
+  max-width: 400px;
   display: flex;
+  justify-content: space-between;
 }
 
 .age-calc__input-section {
-  width: calc(100% / 3);
-  padding: 5px;
+  width: calc(90% / 3);
 }
 
 .age-calc__h1 {
-  font-size: 12px;
-  letter-spacing: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
   color: var(--color-primary-light);
 }
 
@@ -144,10 +153,99 @@ input[type="number"] {
   border: 1px solid var(--color_primary-lighter);
   border-radius: 5px;
   outline: none;
+  margin-top: 5px;
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
 }
-.age-calc__input:focus-visible {
+.age-calc__input:focus {
   border-color: var(--color-secundary);
+}
+
+@media only screen and (min-width: 1024px) {
+  .age-calc__input {
+    font-size: 24px;
+  }
+
+  .age-calc__h1 {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+/* .
+.
+.
+.
+.
+.
+.
+. Age calculator button */
+.age-calc__btn-box {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  background-image: linear-gradient(
+    var(--color-background-02) 0%,
+    var(--color-background-02) 49%,
+    var(--color_primary-lighter) 49%,
+    var(--color_primary-lighter) 51%,
+    var(--color-background-02) 51%
+  );
+}
+
+.age-calc__btn {
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: var(--color-secundary);
+  cursor: pointer;
+}
+.age-calc__btn:active,
+.age-calc__btn:hover {
+  background-color: var(--color-primary);
+}
+
+.age-calc__btn-svg {
+  fill: none;
+  stroke-width: 3;
+  stroke: var(--color-background-02);
+}
+
+@media only screen and (min-width: 1024px) {
+  .age-calc__btn-box {
+    justify-content: end;
+  }
+
+  .age-calc__btn {
+    width: 70px;
+    height: 70px;
+    padding: 20px;
+  }
+}
+/* .
+.
+.
+.
+.
+.
+.
+. Age calculator results */
+
+.age-calc__result {
+  margin: 0;
+  font-size: 42px;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.age-calc__number {
+  color: var(--color-secundary);
+}
+
+@media only screen and (min-width: 1024px) {
+  .age-calc__result {
+    font-size: 64px;
+  }
 }
