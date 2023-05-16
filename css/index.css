@@ -169,6 +169,7 @@ a {
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 }
 .age-calc__input:focus {
   border-color: var(--color-secundary);
@@ -177,10 +178,20 @@ a {
   border-color: var(--color-warning);
 }
 
+.age-calc__warning-text {
+  margin: 10px 0 0;
+  font-size: 10px;
+  font-style: italic;
+  color: var(--color-warning);
+}
+
 @media only screen and (min-width: 1024px) {
   .age-calc__input {
     font-size: 24px;
     transition: 0.2s;
+  }
+  .age-calc__input:hover {
+    border-color: var(--color-secundary);
   }
 
   .age-calc__h1 {

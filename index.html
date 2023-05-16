@@ -17,25 +17,36 @@
   <body>
     <main class="age-calc">
       <header class="age-calc__input-box">
-        <section class="age-calc__input-section">
-          <h1 class="age-calc__h1">DAY</h1>
-          <input class="age-calc__input max-2" type="number" placeholder="DD" />
-        </section>
-        <section class="age-calc__input-section">
-          <h1 class="age-calc__h1">MONTH</h1>
-          <input class="age-calc__input max-2" type="number" placeholder="MM" />
-        </section>
-        <section class="age-calc__input-section">
-          <h1 class="age-calc__h1">YEAR</h1>
+        <section class="age-calc__input-section" id="input-day-section">
+          <h1 class="age-calc__h1" id="input-day-title">DAY</h1>
           <input
-            class="age-calc__input max-4"
+            class="age-calc__input"
+            id="input-day"
+            type="number"
+            placeholder="DD"
+          />
+        </section>
+        <section class="age-calc__input-section" id="input-month-section">
+          <h1 class="age-calc__h1" id="input-month-title">MONTH</h1>
+          <input
+            class="age-calc__input"
+            id="input-month"
+            type="number"
+            placeholder="MM"
+          />
+        </section>
+        <section class="age-calc__input-section" id="input-year-section">
+          <h1 class="age-calc__h1" id="input-year-title">YEAR</h1>
+          <input
+            class="age-calc__input"
+            id="input-year"
             type="number"
             placeholder="YYYY"
           />
         </section>
       </header>
       <section class="age-calc__btn-box">
-        <button class="age-calc__btn">
+        <button class="age-calc__btn" id="btn-age-calc">
           <svg viewBox="0 0 46 44">
             <path
               class="age-calc__btn-svg"
