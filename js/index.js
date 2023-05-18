@@ -1,4 +1,6 @@
 // Global variables
+const ageCalcContent = document.querySelector(".age-calc");
+const inputsBox = document.querySelector("#input-box");
 const inputDaySection = document.querySelector("#input-day-section");
 const inputMonthSection = document.querySelector("#input-month-section");
 const inputYearSection = document.querySelector("#input-year-section");
@@ -8,6 +10,7 @@ const inputYearTitle = document.querySelector("#input-year-title");
 const inputDay = document.querySelector("#input-day");
 const inputMonth = document.querySelector("#input-month");
 const inputYear = document.querySelector("#input-year");
+const currentDate = new Date();
 
 const allInputsSections = [
   inputDaySection,
@@ -46,6 +49,8 @@ inputYear.setAttribute(
 // .
 // . Functions
 function clearWarnings(array) {
+  let dateWarning = ageCalcContent.querySelector("#date-warning");
+
   array.forEach((input, index) => {
     if (input.classList.contains("warning")) {
       let selectElementP = allInputsSections[index].querySelector(
@@ -53,9 +58,16 @@ function clearWarnings(array) {
       );
       allInputsTitles[index].classList.remove("warning");
       input.classList.remove("warning");
-      allInputsSections[index].removeChild(selectElementP);
+      if (selectElementP) {
+        allInputsSections[index].removeChild(selectElementP);
+      }
     }
   });
+
+  if (dateWarning) {
+    console.log(dateWarning);
+    ageCalcContent.removeChild(dateWarning);
+  }
 }
 
 function checkIfIsEmpty(array) {
@@ -83,8 +95,7 @@ function checkIfIsValid(array) {
         "Must be in the past",
       ];
       let value = ["day", "month", "year"];
-      // Change the 2023 condition later for the current year
-      let condition = [31, 12, 2023];
+      let condition = [31, 12, currentDate.getFullYear()];
 
       if (Number(input.value) > condition[index]) {
         allInputsTitles[index].classList.add("warning");
@@ -101,10 +112,44 @@ function checkIfIsValid(array) {
   });
 }
 
+function checkIfIsReal(array) {
+  let vibeCheck = 0;
+
+  array.forEach((vibe) => {
+    if (!vibe.classList.contains("warning")) {
+      vibeCheck += 1;
+    }
+  });
+
+  if (vibeCheck === 3) {
+    const createdDate = new Date(
+      inputYear.value,
+      inputMonth.value - 1,
+      inputDay.value
+    );
+
+    console.log(createdDate.getDay);
+
+    if (createdDate.getMonth !== inputMonth.value) {
+      let warningText = document.createElement("p");
+      warningText.setAttribute("class", "age-calc__warning-text");
+      warningText.setAttribute("id", "date-warning");
+      warningText.textContent = "Must be a valid date";
+
+      array.forEach((input, index) => {
+        allInputsTitles[index].classList.add("warning");
+        input.classList.add("warning");
+      });
+      inputsBox.after(warningText);
+    }
+  }
+}
+
 function calculateAge() {
   clearWarnings(allInputs);
   checkIfIsEmpty(allInputs);
   checkIfIsValid(allInputs);
+  checkIfIsReal(allInputs);
 }
 // .
 // .
