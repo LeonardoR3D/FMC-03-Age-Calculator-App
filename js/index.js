@@ -1,5 +1,6 @@
 // Global variables
 const ageCalcContent = document.querySelector(".age-calc");
+
 const inputsBox = document.querySelector("#input-box");
 const inputDaySection = document.querySelector("#input-day-section");
 const inputMonthSection = document.querySelector("#input-month-section");
@@ -10,6 +11,7 @@ const inputYearTitle = document.querySelector("#input-year-title");
 const inputDay = document.querySelector("#input-day");
 const inputMonth = document.querySelector("#input-month");
 const inputYear = document.querySelector("#input-year");
+
 const currentDate = new Date();
 
 const allInputsSections = [
@@ -21,6 +23,10 @@ const allInputsTitles = [inputDayTitle, inputMonthTitle, inputYearTitle];
 const allInputs = [inputDay, inputMonth, inputYear];
 
 const btnAgeCalc = document.querySelector("#btn-age-calc");
+
+const textAgeInYears = document.querySelector("#age-in-years");
+const textAgeInMonths = document.querySelector("#age-in-months");
+const textAgeInDays = document.querySelector("#age-in-days");
 // .
 // .
 // .
@@ -56,6 +62,7 @@ function clearWarnings(array) {
       let selectElementP = allInputsSections[index].querySelector(
         ".age-calc__warning-text"
       );
+
       allInputsTitles[index].classList.remove("warning");
       input.classList.remove("warning");
       if (selectElementP) {
@@ -65,7 +72,6 @@ function clearWarnings(array) {
   });
 
   if (dateWarning) {
-    console.log(dateWarning);
     ageCalcContent.removeChild(dateWarning);
   }
 }
@@ -122,15 +128,12 @@ function checkIfIsReal(array) {
   });
 
   if (vibeCheck === 3) {
-    const createdDate = new Date(
-      inputYear.value,
-      inputMonth.value - 1,
-      inputDay.value
-    );
+    const createdDate = new Date();
+    createdDate.setFullYear(inputYear.value);
+    createdDate.setMonth(inputMonth.value - 1);
+    createdDate.setDate(inputDay.value);
 
-    console.log(createdDate.getDay);
-
-    if (createdDate.getMonth !== inputMonth.value) {
+    if (createdDate.getMonth() + 1 !== Number(inputMonth.value)) {
       let warningText = document.createElement("p");
       warningText.setAttribute("class", "age-calc__warning-text");
       warningText.setAttribute("id", "date-warning");
@@ -141,7 +144,53 @@ function checkIfIsReal(array) {
         input.classList.add("warning");
       });
       inputsBox.after(warningText);
+    } else if (
+      (createdDate.getFullYear() === currentDate.getFullYear() &&
+        createdDate.getMonth() > currentDate.getMonth()) ||
+      (createdDate.getFullYear() === currentDate.getFullYear() &&
+        createdDate.getMonth() === currentDate.getMonth() &&
+        createdDate.getDate() > currentDate.getDate())
+    ) {
+      let warningText = document.createElement("p");
+      warningText.setAttribute("class", "age-calc__warning-text");
+      warningText.setAttribute("id", "date-warning");
+      warningText.textContent = "Must be a date in the past";
+
+      array.forEach((input, index) => {
+        allInputsTitles[index].classList.add("warning");
+        input.classList.add("warning");
+      });
+      inputsBox.after(warningText);
     }
+  }
+}
+
+function calcAndInsertion(array) {
+  let vibeCheck = 0;
+
+  array.forEach((vibe) => {
+    if (!vibe.classList.contains("warning")) {
+      vibeCheck += 1;
+    }
+  });
+
+  if (vibeCheck === 3) {
+    const createdDate = new Date();
+    createdDate.setFullYear(inputYear.value);
+    createdDate.setMonth(inputMonth.value - 1);
+    createdDate.setDate(inputDay.value);
+
+    const ageInMiliseconds = currentDate.getTime() - createdDate.getTime();
+
+    const timeElapsed = new Date(ageInMiliseconds);
+
+    const ageInYears = timeElapsed.getFullYear() - 1970;
+    const ageInMonths = timeElapsed.getMonth();
+    const ageInDays = timeElapsed.getDate();
+
+    textAgeInYears.innerHTML = ageInYears;
+    textAgeInMonths.innerHTML = ageInMonths;
+    textAgeInDays.innerHTML = ageInDays;
   }
 }
 
@@ -150,6 +199,7 @@ function calculateAge() {
   checkIfIsEmpty(allInputs);
   checkIfIsValid(allInputs);
   checkIfIsReal(allInputs);
+  calcAndInsertion(allInputs);
 }
 // .
 // .
