@@ -74,6 +74,12 @@ function clearWarnings(array) {
   if (dateWarning) {
     ageCalcContent.removeChild(dateWarning);
   }
+
+  if (textAgeInYears.innerHTML !== "- -") {
+    textAgeInYears.innerHTML = "- -";
+    textAgeInMonths.innerHTML = "- -";
+    textAgeInDays.innerHTML = "- -";
+  }
 }
 
 function checkIfIsEmpty(array) {
@@ -149,7 +155,7 @@ function checkIfIsReal(array) {
         createdDate.getMonth() > currentDate.getMonth()) ||
       (createdDate.getFullYear() === currentDate.getFullYear() &&
         createdDate.getMonth() === currentDate.getMonth() &&
-        createdDate.getDate() > currentDate.getDate())
+        createdDate.getDate() >= currentDate.getDate())
     ) {
       let warningText = document.createElement("p");
       warningText.setAttribute("class", "age-calc__warning-text");
