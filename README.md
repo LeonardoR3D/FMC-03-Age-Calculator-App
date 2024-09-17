@@ -38,7 +38,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [https://github.com/LeonardoR3D/frontend-mentor-challenge-003.git]
-- Live Site URL: [https://leonardor3d.github.io/frontend-mentor-challenge-003/]
+- Live Site URL: [https://leonardor3d.github.io/FMC-03-Age-Calculator-App/]
 
 ## My process
 
